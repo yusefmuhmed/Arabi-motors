@@ -24,8 +24,8 @@ class MyHelper {
         port: 587,
         secure: false,
         auth: {
-          user: "TamerGomaa_71@outlook.com",
-          pass: "explain@1234",
+          user: "youssefmohamed3011@outlook.com",
+          pass: "Photoshop30112556",
         },
         tls: {
           rejectUnauthorized: false,
@@ -33,7 +33,7 @@ class MyHelper {
       });
 
       const mailOptions = {
-        from: "TamerGomaa_71@outlook.com",
+        from: "youssefmohamed3011@outlook.com",
         to: mail,
         subject: "Password Reset OTP",
         text: `Your OTP for password reset is: ${otp}`,

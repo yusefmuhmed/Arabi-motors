@@ -1,0 +1,342 @@
+{
+	"info": {
+		"_postman_id": "0f5fa617-bae6-4a4d-80fe-4f9800ec5ae4",
+		"name": "Motors",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18749940"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstName",
+							"value": "Youssef",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Mohamed",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "Youssef@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Youssef123",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "SecurePass123",
+							"type": "text"
+						},
+						{
+							"key": "phoneNum",
+							"value": "01234567890",
+							"type": "text"
+						},
+						{
+							"key": "gender",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Youssef mohamed/Downloads/AirBrush_20240126162745.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}user/register",
+					"host": [
+						"{{baseUrl}}user"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Info",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZiMWJmMWUxYjFmOWI0NWVmYmM3ZGQiLCJpYXQiOjE3Mjc3MzM1NjgsImV4cCI6MTcyNzgxOTk2OH0.dxhZ5Ec9uXfQD7wYF0_-fy5SjvKarDfTond0POvRtt4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstName",
+							"value": "Youssefz",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Mohamedz",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "yusefmuhmed6766@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Youssef123z",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "SecurePass123z",
+							"type": "text"
+						},
+						{
+							"key": "phoneNum",
+							"value": "01234567899",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Youssef mohamed/Downloads/wallpaperflare.com_wallpaper (6).jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}user/updateInfo",
+					"host": [
+						"{{baseUrl}}user"
+					],
+					"path": [
+						"updateInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Youssef123z\",\r\n    \"password\":\"Hello123@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}user/login",
+					"host": [
+						"{{baseUrl}}user"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZiMWJmMWUxYjFmOWI0NWVmYmM3ZGQiLCJpYXQiOjE3Mjc3MzMzMTEsImV4cCI6MTcyNzgxOTcxMX0.U_BwJHYv5Yi-bEOv4EolltpoMwcITO9yv0Er1AnP8Xs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}user/logout",
+					"host": [
+						"{{baseUrl}}user"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show My Profile",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZiMWJmMWUxYjFmOWI0NWVmYmM3ZGQiLCJpYXQiOjE3Mjc3MzMzMTEsImV4cCI6MTcyNzgxOTcxMX0.U_BwJHYv5Yi-bEOv4EolltpoMwcITO9yv0Er1AnP8Xs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}user/profile",
+					"host": [
+						"{{baseUrl}}user"
+					],
+					"path": [
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZiMWJmMWUxYjFmOWI0NWVmYmM3ZGQiLCJpYXQiOjE3Mjc3MzM1NjgsImV4cCI6MTcyNzgxOTk2OH0.dxhZ5Ec9uXfQD7wYF0_-fy5SjvKarDfTond0POvRtt4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}user/users",
+					"host": [
+						"{{baseUrl}}user"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset User Password",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"yusefmuhmed6766@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}user/resetPassword",
+					"host": [
+						"{{baseUrl}}user"
+					],
+					"path": [
+						"resetPassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify User OTP",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"yusefmuhmed6766@gmail.com\",\r\n    \"otp\":\"9868\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}user/verifyOTP",
+					"host": [
+						"{{baseUrl}}user"
+					],
+					"path": [
+						"verifyOTP"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Password",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"yusefmuhmed6766@gmail.com\",\r\n    \"password\":\"Hello123@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}user/updatePassword",
+					"host": [
+						"{{baseUrl}}user"
+					],
+					"path": [
+						"updatePassword"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:4000/api/",
+			"type": "default"
+		}
+	]
+}

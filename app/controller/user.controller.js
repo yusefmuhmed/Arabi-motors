@@ -19,7 +19,7 @@ class User {
 
       await userData.save();
 
-      myHelper.resHandler(res, 200, true, userData, "user added successfully");
+      myHelper.resHandler(res, 201, true, userData, "user added successfully");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
@@ -63,7 +63,7 @@ class User {
     try {
       req.user.tokens = req.user.tokens.filter((t) => t.token != req.token);
       await req.user.save();
-      myHelper.resHandler(res, 200, true, null, "logged out");
+      myHelper.resHandler(res, 201, true, null, "logged out");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
@@ -104,7 +104,7 @@ class User {
             200,
             true,
             req.body.email,
-            "Email sent successfully"
+            "Email sent successfully (Check your spam/junk folder if you can't find it)"
           );
         } else {
           {
@@ -144,9 +144,44 @@ class User {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
+
+  static updatePassword = async (req, res) => {
+    try {
+      const user = await userModel.findOne({ email: req.body.email });
+      if (!user) {
+        return myHelper.resHandler(
+          res,
+          404,
+          false,
+          "Email not found",
+          "Email not found in the system"
+        );
+      } else {
+        user.password = await bcryptjs.hash(req.body.password, 8);
+        user.OTP = null;
+        await userModel.findOneAndUpdate(
+          { email: req.body.email },
+          {
+            password: user.password,
+            OTP: user.OTP,
+          },
+          { new: true }
+        );
+        myHelper.resHandler(
+          res,
+          201,
+          true,
+          req.body.email,
+          "Password updated successfully"
+        );
+      }
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
   static updateInfo = async (req, res) => {
     try {
-      let user = await userModel.findOne({ email: req.body.email });
+      let user = await userModel.findById(req.user._id);
 
       if (!user) {
         return myHelper.resHandler(
@@ -179,8 +214,8 @@ class User {
         }
 
         // Update with the new image filename
-        user = await userModel.findOneAndUpdate(
-          { email: req.body.email },
+        user = await userModel.findByIdAndUpdate(
+          req.user._id,
           {
             ...req.body,
             profileImage: req.file
@@ -193,8 +228,8 @@ class User {
         );
       } else {
         // Update without changing the profile image
-        user = await userModel.findOneAndUpdate(
-          { email: req.body.email },
+        user = await userModel.findByIdAndUpdate(
+          req.user._id,
           { ...req.body },
           { new: true }
         );

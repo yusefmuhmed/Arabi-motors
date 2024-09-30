@@ -45,11 +45,8 @@ const userSchema = mongoose.Schema(
       trim: true,
       required: true,
       validate(value) {
-        if (value.length < 6) {
+        if (value.length < 6)
           throw new Error("password must be more than 6 characters");
-        } else if (value.length > 25) {
-          throw new Error("password must be less than 25 characters");
-        }
       },
     },
     phoneNum: {
@@ -83,10 +80,7 @@ userSchema.pre("save", async function () {
 userSchema.statics.loginUser = async (username, password) => {
   const userData = await User.findOne({ username });
   if (!userData) throw new Error("invalid username");
-  const validatePassword = await bcryptjs.compare(
-    password,
-    userData.password
-  );
+  const validatePassword = await bcryptjs.compare(password, userData.password);
   if (!validatePassword) throw new Error("invalid password");
   return userData;
 };
@@ -98,19 +92,16 @@ userSchema.methods.toJSON = function () {
 };
 userSchema.methods.generateToken = async function () {
   const userData = this;
-  const expiresIn = 24 * 60 * 60; 
-  const token = jwt.sign(
-    { _id: userData._id }, 
-    process.env.tokenPass, 
-    { expiresIn }
-  );
+  const expiresIn = 24 * 60 * 60;
+  const token = jwt.sign({ _id: userData._id }, process.env.tokenPass, {
+    expiresIn,
+  });
   const expiresAt = new Date(Date.now() + expiresIn * 1000);
-  userData.tokens = userData.tokens.concat({ token, expiresAt });
+  userData.tokens = { token, expiresAt };
   await userData.save();
-  
+
   return token;
 };
-
 
 userSchema.statics.removeExpiredTokens = async function () {
   const now = new Date();
@@ -120,9 +111,8 @@ userSchema.statics.removeExpiredTokens = async function () {
     { $pull: { tokens: { expiresAt: { $lte: now } } } }
   );
 
-  console.log('Expired tokens removed');
+  console.log("Expired tokens removed");
 };
-
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
