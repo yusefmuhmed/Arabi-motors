@@ -72,6 +72,27 @@
 			"response": []
 		},
 		{
+			"name": "Register User By Google",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}user/auth/google",
+					"host": [
+						"{{baseUrl}}user"
+					],
+					"path": [
+						"auth",
+						"google"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Update User Info",
 			"request": {
 				"auth": {
@@ -110,7 +131,7 @@
 						},
 						{
 							"key": "password",
-							"value": "SecurePass123z",
+							"value": "Hello123@",
 							"type": "text"
 						},
 						{
@@ -121,7 +142,8 @@
 						{
 							"key": "image",
 							"type": "file",
-							"src": "/C:/Users/Youssef mohamed/Downloads/wallpaperflare.com_wallpaper (6).jpg"
+							"src": "/C:/Users/Youssef mohamed/Downloads/wallpaperflare.com_wallpaper (6).jpg",
+							"disabled": true
 						}
 					]
 				},
@@ -147,7 +169,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\":\"Youssef123z\",\r\n    \"password\":\"Hello123@\"\r\n}",
+					"raw": "{\r\n    \"username\":\"Youssef123z\",\r\n    \"password\":\"Hello123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -312,7 +334,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"yusefmuhmed6766@gmail.com\",\r\n    \"password\":\"Hello123@\"\r\n}",
+					"raw": "{\r\n    \"email\":\"yusefmuhmed6766@gmail.com\",\r\n    \"password\":\"Hello123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
