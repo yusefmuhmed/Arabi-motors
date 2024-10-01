@@ -6,8 +6,16 @@ const http = require("http");
 
 const app = express();
 const server = http.createServer(app);
+const session = require("express-session");
 
 
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.set('view engine', 'ejs');
 
 app.use(cors());
 app.use(express.json());

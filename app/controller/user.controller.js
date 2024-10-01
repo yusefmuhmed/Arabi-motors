@@ -4,6 +4,42 @@ const fs = require("fs");
 const path = require("path");
 const bcryptjs = require("bcryptjs");
 class User {
+  static signInGoogleUser = async (req, res) => {
+    try {
+      // User has been authenticated successfully
+      const { sub, email, given_name, family_name, picture } = req.user;
+
+      // Check if user already exists
+      let user = await userModel.findOne({ email });
+
+      if (!user) {
+        // If user doesn't exist, create a new user record
+        user = new userModel({
+          email,
+          firstName: given_name,
+          lastName: family_name,
+          profileImage: picture,
+          password: sub,
+        });
+
+        await user.save(); // Save the new user to the database
+      }
+
+      // Generate a token for the user
+      const token = await user.generateToken(); // Ensure your User model has a generateToken method
+
+      // Send a response or redirect
+      res.send({ success: true, user, token });
+      // Alternatively, you could redirect to a different page
+      // res.redirect('/someOtherPage');
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .send({ success: false, message: "Internal server error" });
+    }
+  };
+
   static register = async (req, res) => {
     try {
       let userData;
